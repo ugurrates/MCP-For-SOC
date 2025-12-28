@@ -13,7 +13,7 @@ This MCP (Model Context Protocol) server provides automated, multi-source threat
 - ✅ **9+ Intelligence Sources**: VirusTotal, AbuseIPDB, Shodan, AlienVault OTX, Abuse.ch suite, and more
 - ✅ **3-Phase Analysis**: Intelligence Gathering → Risk Assessment → Actionable Recommendations
 - ✅ **Aviation Security Focus**: Tailored for aviation infrastructure protection
-- ✅ **Zero False Positives**: Multi-source validation and risk scoring
+- ✅ **Minumum False Positives**: Multi-source validation and risk scoring
 - ✅ **Microsoft Defender Integration**: Auto-generated KQL queries for EDR hunting
 - ✅ **Async Architecture**: Fast, concurrent API queries
 
