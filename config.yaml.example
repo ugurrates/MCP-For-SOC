@@ -1,0 +1,53 @@
+# Threat Intelligence MCP Server Configuration
+# Copy this file to config.yaml and add your API keys
+
+api_keys:
+  virustotal: "YOUR_VIRUSTOTAL_API_KEY_HERE"
+  abuseipdb: "YOUR_ABUSEIPDB_API_KEY_HERE"
+  shodan: "YOUR_SHODAN_API_KEY_HERE"
+  alienvault_otx: "YOUR_ALIENVAULT_OTX_API_KEY_HERE"
+  viewdns: "YOUR_VIEWDNS_API_KEY_HERE"  # Optional
+
+# Rate Limiting (requests per minute)
+rate_limits:
+  virustotal: 4
+  abuseipdb: 1
+  shodan: 1
+  alienvault_otx: 10
+
+# Cache Settings
+cache:
+  enabled: true
+  ttl_hours: 24
+  directory: ".cache"
+
+# Risk Scoring Weights
+risk_weights:
+  virustotal_malicious: 40
+  virustotal_suspicious: 20
+  abuseipdb_high_confidence: 30
+  abuseipdb_medium_confidence: 15
+  shodan_vulns_per_vuln: 5
+  shodan_max_score: 20
+  alienvault_many_pulses: 20
+  alienvault_some_pulses: 10
+  abuse_ch_found: 25
+
+# Risk Thresholds
+risk_thresholds:
+  high: 70
+  medium: 40
+  low: 20
+
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "threat_intel.log"
+
+# Aviation-Specific Settings
+aviation:
+  enabled: true
+  # Add aviation-specific IOC patterns or whitelists here
+  critical_infrastructure_ips: []
+  monitored_domains: []
