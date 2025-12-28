@@ -1,12 +1,19 @@
-# Threat Intelligence MCP Server Configuration
+# Threat Intelligence MCP Server v2.0 Configuration
 # Copy this file to config.yaml and add your API keys
 
 api_keys:
+  # Core Intelligence Sources
   virustotal: "YOUR_VIRUSTOTAL_API_KEY_HERE"
   abuseipdb: "YOUR_ABUSEIPDB_API_KEY_HERE"
   shodan: "YOUR_SHODAN_API_KEY_HERE"
   alienvault_otx: "YOUR_ALIENVAULT_OTX_API_KEY_HERE"
   viewdns: "YOUR_VIEWDNS_API_KEY_HERE"  # Optional
+  
+  # Sandbox Analysis Platforms (NEW in v2.0)
+  hybrid_analysis: "YOUR_HYBRID_ANALYSIS_API_KEY_HERE"
+  anyrun: "YOUR_ANYRUN_API_KEY_HERE"
+  triage: "YOUR_TRIAGE_API_KEY_HERE"
+  threat_zone: "YOUR_THREAT_ZONE_API_KEY_HERE"
 
 # Rate Limiting (requests per minute)
 rate_limits:
@@ -14,6 +21,10 @@ rate_limits:
   abuseipdb: 1
   shodan: 1
   alienvault_otx: 10
+  hybrid_analysis: 10
+  anyrun: 5
+  triage: 20
+  threat_zone: 10
 
 # Cache Settings
 cache:
@@ -21,29 +32,25 @@ cache:
   ttl_hours: 24
   directory: ".cache"
 
-# Risk Scoring Weights
-risk_weights:
-  virustotal_malicious: 40
-  virustotal_suspicious: 20
-  abuseipdb_high_confidence: 30
-  abuseipdb_medium_confidence: 15
-  shodan_vulns_per_vuln: 5
-  shodan_max_score: 20
-  alienvault_many_pulses: 20
-  alienvault_some_pulses: 10
-  abuse_ch_found: 25
+# Normalized IOC Scoring Weights (v2.0)
+scoring_weights:
+  threat_score_max: 40      # Malicious detections
+  confidence_score_max: 30  # Source reliability
+  impact_score_max: 20      # Vulnerability/criticality
+  freshness_score_max: 10   # Recency
 
 # Risk Thresholds
 risk_thresholds:
-  high: 70
-  medium: 40
-  low: 20
+  critical: 90  # Score >= 90
+  high: 70      # Score >= 70
+  medium: 40    # Score >= 40
+  low: 20       # Score >= 20
 
 # Logging
 logging:
   level: "INFO"  # DEBUG, INFO, WARNING, ERROR
   format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-  file: "threat_intel.log"
+  file: "threat_intel_v2.log"
 
 # Aviation-Specific Settings
 aviation:
@@ -51,3 +58,11 @@ aviation:
   # Add aviation-specific IOC patterns or whitelists here
   critical_infrastructure_ips: []
   monitored_domains: []
+  
+# Feature Flags (v2.0)
+features:
+  sandbox_analysis: true
+  mitre_mapping: true
+  network_ioc_extraction: true
+  normalized_scoring: true
+  kql_generation: true
