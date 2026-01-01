@@ -197,9 +197,9 @@ export THREAT_ZONE_API_KEY="your_key"
 
 ## 🎮 Usage
 
-### Claude Desktop Integration
+### Open Source Or Claude etc. Integration
 
-Add to `claude_desktop_config.json`:
+Add to `*****_config.json`:
 
 ```json
 {
